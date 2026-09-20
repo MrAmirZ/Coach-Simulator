@@ -5043,7 +5043,7 @@ players = {
         "Shahr Khodro": {
             "formation": "4-3-3",
             "budget": 4500000,
-            "logo":"Assets/logo/Iran/Shahr Khodro.webp",
+            "logo":"Assets/logo/Iran/Shahr Khodro.png",
             "tactics": {
                 "mentality": "Defensive",
                 "pressing": "Low",
