@@ -1,7 +1,7 @@
 import Match as mtc
 
 class Simulate_Match:
-    def __init__(self, home, away, name_home, name_away):
+    def __init__(self,name_home,name_away,home,away):
         self.home = home
         self.away = away
         self.name_home = name_home
