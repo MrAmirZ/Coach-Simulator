@@ -1128,6 +1128,18 @@ def end_game():
     Training_Day=True
     main_menu()
 
+def simulate_match():
+    global Game_Calendar,Currect_Day
+    L_Starting_Players_Home.place_forget()
+    L_Starting_Players_Away.place_forget()
+    for i in Game_Calendar[Currect_Day]:
+        if Team in i:
+            home=i[0]
+            away=i[1]
+            sim_match=sim_mtc.Simulate_Match(home,away,Game_Player[s4.get()][home],Game_Player[s4.get()][away])
+            L_Home_Goal.config(text=sim_match.get_result()['home_goal'])
+            L_Away_Goal.config(text=sim_match.get_result()['away_goal'])
+
 L_Welcome_Start=tk.Label(Start_Frame,text='Welcome to the Couch Simulator'+'\n'+'Please Click the Button',font=SUBTITLE_FONT,bg=MENU_BG,fg=MENU_ITEM_FG)
 L_Welcome_Start.place(x=530,y=150)
 Start_btn=tk.Button(Start_Frame,text='Start',font=('arial',20),command=start,bg=HEADER_MENU_BG,fg=MENU_ITEM_FG)
@@ -1430,6 +1442,8 @@ Tactics_Match_Btn=tk.Button(Match_Frame,text='Tactics',font=TEXT_FONT,command=ma
 Tactics_Match_Btn.place(x=450,y=760)
 Back_Match_to_Menu_Btn=tk.Button(Match_Frame,text='Back',bg=HEADER_MENU_BG,fg=MENU_ITEM_FG,font=TEXT_FONT,command=main_menu)
 Back_Match_to_Menu_Btn.place(x=200,y=760)
+Simulate_Match_Btn=tk.Button(Match_Frame,text='Simulate Match',bg=HEADER_MENU_BG,fg=MENU_ITEM_FG,font=TEXT_FONT,command=simulate_match)
+Simulate_Match_Btn.place(x=950,y=760)
 Pause_Match_Btn=tk.Button(Match_Frame,text='Pause',font=TEXT_FONT,bg=HEADER_MENU_BG,fg=MENU_ITEM_FG,command=pause_match)
 Continue_Match_Btn=tk.Button(Match_Frame,text='Continue',font=TEXT_FONT,bg=HEADER_MENU_BG,fg=MENU_ITEM_FG,command=continue_match)
 Continue_Match_to_Menu=tk.Button(Match_Frame,text='Continue',font=TEXT_FONT,bg=HEADER_MENU_BG,fg=MENU_ITEM_FG,command=end_game)
