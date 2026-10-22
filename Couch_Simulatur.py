@@ -7,6 +7,7 @@ from Players import players
 import Match as mtc
 import Calendar as cal
 import Training as Train
+import Simulate_Match as sim_mtc
 
 Base_Path=Path(__file__).parent
 
@@ -558,8 +559,8 @@ def show_bench():
     for btn in Player_Bench_Place_List:
         btn.destroy()
     Player_Bench_Place_List.clear()
-    tbx=50
-    tby=700
+    tbx=40
+    tby=740
     for i in range(len(Game_Player[s4.get()][Team]['bench'])):
         player=Game_Player[s4.get()][Team]['bench'][i]
         Player_Bench_Place=tk.Button(Tactic_Team_Frame1,text=f"{player['name']}\n{player['overall']}\n{player['position']}",bg="white",font=TEXT_FONT,command=lambda i=i: select_bench(i),width=10,height=3)
@@ -1297,6 +1298,10 @@ L_PlayerInfo.place(x=650,y=20)
 Back_Player_Btn.place(x=100,y=720)
 L_Overall_Team=tk.Label(Tactic_Team_Header_Frame1,font=('bahnschrift',20,'bold'),bg="#0C7F1D",fg='#f6d30d')
 L_Overall_Team.place(x=30,y=15)
+Football_Line_Canvas=tk.Canvas(Tactic_Team_Frame1,bg='#00CE1F')
+Football_Line_Canvas.create_line(0,320,1145,320,fill="#f1f1f1",width=3)
+Football_Line_Canvas.create_oval(470,240,630,400,outline="#f1f1f1",width=3)
+Football_Line_Canvas.place(x=40,y=70,width=1065,height=680)
 Tactics_Frame2_Btn=tk.Button(Tactic_Team_Frame1,text='Tactics',font=('bahnschrift',20,'bold'),command=tactic_frame,bg='#f6d30d')
 Tactics_Frame2_Btn.place(x=1200,y=680,width=300,height=60)
 Back_Menu_Tactic_Frame1=tk.Button(Tactic_Team_Frame1,text='Back',font=('bahnschrift',20,'bold'),command=previous_tactic_frame,bg='#f6d30d')
