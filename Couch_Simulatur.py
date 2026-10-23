@@ -1142,6 +1142,10 @@ def simulate_match():
     global Game_Calendar,Currect_Day
     L_Starting_Players_Home.place_forget()
     L_Starting_Players_Away.place_forget()
+    Start_Game_Btn.place_forget()
+    Tactics_Match_Btn.place_forget()
+    Back_Match_to_Menu_Btn.place_forget()
+    Simulate_Match_Btn.place_forget()
     for i in Game_Calendar[Currect_Day]:
         if Team in i:
             home=i[0]
@@ -1474,6 +1478,8 @@ Back_Match_to_Menu_Btn=tk.Button(Match_Frame,text='Back',bg=HEADER_MENU_BG,fg=ME
 Back_Match_to_Menu_Btn.place(x=200,y=760)
 Simulate_Match_Btn=tk.Button(Match_Frame,text='Simulate Match',bg=HEADER_MENU_BG,fg=MENU_ITEM_FG,font=TEXT_FONT,command=simulate_match)
 Simulate_Match_Btn.place(x=950,y=760)
+Continue_Match_to_Menu_Btn=tk.Button(Match_Frame,text='Continue',font=TEXT_FONT,bg=HEADER_MENU_BG,fg=MENU_ITEM_FG,command=main_menu)
+Continue_Match_to_Menu_Btn.place(x=700,y=760)
 L_Home_Shots=tk.Label(Match_Frame,bg=MENU_BG,fg=MENU_ITEM_FG,font=SUBTITLE_FONT,justify='left')
 L_Home_Shots_on_Target=tk.Label(Match_Frame,bg=MENU_BG,fg=MENU_ITEM_FG,font=SUBTITLE_FONT,justify='left')
 L_Home_Possession=tk.Label(Match_Frame,bg=MENU_BG,fg=MENU_ITEM_FG,font=SUBTITLE_FONT,justify='left')
