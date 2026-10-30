@@ -35,8 +35,8 @@ class Simulate_Match:
                 self.match.home_shots_on_target,
             "away_shots_on_target":
                 self.match.away_shots_on_target,
-            "home_possession": self.match.home_possession,
-            "away_possession": self.match.away_possession,
+            "home_possession": self.match.match_possession()[0],
+            "away_possession": self.match.match_possession()[1],
             "home_yellow": self.match.home_yellow,
             "away_yellow": self.match.away_yellow,
             "home_red": self.match.home_red,

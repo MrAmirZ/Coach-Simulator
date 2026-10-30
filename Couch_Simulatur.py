@@ -1057,33 +1057,36 @@ def play_match():
     L_Away_Goal.config(text='0')
     L_Starting_Players_Home.place(x=200,y=250)
     L_Starting_Players_Away.place(x=950,y=250)
-    for i in Game_Calendar[Currect_Day]:
-        if Team in i:
-            Home_Number=0
-            Away_Number=0
-            Starting_Home=''
-            Starting_Away=''
-            home=i[0]
-            away=i[1]
-            L_Home_Game.config(text=i[0])
-            L_Away_Game.config(text=i[1])
-            IMG_Home_Game=tk.PhotoImage(file=Base_Path/Game_Player[s4.get()][i[0]]['logo'])
-            IMG_Home_Game=IMG_Home_Game.subsample(18,18)
-            L_IMG_Home_Game.config(image=IMG_Home_Game)
-            IMG_Away_Game=tk.PhotoImage(file=Base_Path/Game_Player[s4.get()][i[1]]['logo'])
-            IMG_Away_Game=IMG_Away_Game.subsample(18,18)
-            L_IMG_Away_Game.config(image=IMG_Away_Game)
-            match=mtc.Match_Engine(home,away,Game_Player[s4.get()][home],Game_Player[s4.get()][away])
-            Home_Player=Game_Player[s4.get()][home]['starting']
-            Away_Player=Game_Player[s4.get()][away]['starting']
-            for player in Home_Player:
-                Starting_Home=Starting_Home+f'{Tactics_Positions[Game_Player[s4.get()][home]['formation']][Home_Number]} - {player['name']}\n'
-                Home_Number+=1
-            for player in Away_Player:
-                Starting_Away=Starting_Away+f'{Tactics_Positions[Game_Player[s4.get()][away]['formation']][Away_Number]} - {player['name']}\n'
-                Away_Number+=1
-            L_Starting_Players_Home.config(text=f'{Starting_Home}')
-            L_Starting_Players_Away.config(text=f'{Starting_Away}')
+    if Currect_Day-1<=len(Game_Calendar):
+        for i in Game_Calendar[Currect_Day]:
+            if Team in i:
+                Home_Number=0
+                Away_Number=0
+                Starting_Home=''
+                Starting_Away=''
+                home=i[0]
+                away=i[1]
+                L_Home_Game.config(text=i[0])
+                L_Away_Game.config(text=i[1])
+                IMG_Home_Game=tk.PhotoImage(file=Base_Path/Game_Player[s4.get()][i[0]]['logo'])
+                IMG_Home_Game=IMG_Home_Game.subsample(18,18)
+                L_IMG_Home_Game.config(image=IMG_Home_Game)
+                IMG_Away_Game=tk.PhotoImage(file=Base_Path/Game_Player[s4.get()][i[1]]['logo'])
+                IMG_Away_Game=IMG_Away_Game.subsample(18,18)
+                L_IMG_Away_Game.config(image=IMG_Away_Game)
+                match=mtc.Match_Engine(home,away,Game_Player[s4.get()][home],Game_Player[s4.get()][away])
+                Home_Player=Game_Player[s4.get()][home]['starting']
+                Away_Player=Game_Player[s4.get()][away]['starting']
+                for player in Home_Player:
+                    Starting_Home=Starting_Home+f'{Tactics_Positions[Game_Player[s4.get()][home]['formation']][Home_Number]} - {player['name']}\n'
+                    Home_Number+=1
+                for player in Away_Player:
+                    Starting_Away=Starting_Away+f'{Tactics_Positions[Game_Player[s4.get()][away]['formation']][Away_Number]} - {player['name']}\n'
+                    Away_Number+=1
+                L_Starting_Players_Home.config(text=f'{Starting_Home}')
+                L_Starting_Players_Away.config(text=f'{Starting_Away}')
+    else:
+        season_finish()
 
 def start_match():
     Start_Game_Btn.place_forget()
@@ -1162,6 +1165,7 @@ def simulate_match():
     Tactics_Match_Btn.place_forget()
     Back_Match_to_Menu_Btn.place_forget()
     Simulate_Match_Btn.place_forget()
+    Continue_Match_to_Menu.place(x=700,y=760)
     for i in Game_Calendar[Currect_Day]:
         if Team in i:
             home=i[0]
@@ -1189,6 +1193,9 @@ def simulate_match():
             L_Away_Yellow_Cart.place(x=950,y=400)
             L_Home_Red_Cart.place(x=200,y=450)
             L_Away_Red_Cart.place(x=950,y=450)
+
+def season_finish():
+    pass
 
 L_Welcome_Start=tk.Label(Start_Frame,text='Welcome to the Couch Simulator'+'\n'+'Please Click the Button',font=SUBTITLE_FONT,bg=MENU_BG,fg=MENU_ITEM_FG)
 L_Welcome_Start.place(x=530,y=150)

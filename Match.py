@@ -8,8 +8,8 @@ class Match_Engine:
         self.name_away=name_away
         self.home_goal=0
         self.away_goal=0
-        self.home_possession=0
-        self.away_possession=0
+        self.home_pass=0
+        self.away_pass=0
         self.home_shots=0
         self.away_shots=0
         self.home_shots_on_target=0
@@ -27,10 +27,10 @@ class Match_Engine:
         self.home_goal+=1
     def add_away_goal(self):
         self.away_goal+=1
-    def add_home_possession(self):
-        self.home_possession+=1
-    def add_away_possession(self):
-        self.away_possession+=1
+    def add_home_pass(self):
+        self.home_pass+=1
+    def add_away_pass(self):
+        self.away_pass+=1
     def add_home_shots(self):
         self.home_shots+=1
     def add_away_shots(self):
@@ -301,9 +301,16 @@ class Match_Engine:
                 if self.goal_chance(team)=='goal':
                     if team=='home':
                         self.add_home_goal()
+                        self.add_home_pass()
                     else:
                         self.add_away_goal()
+                        self.add_away_pass()
                     return f'{team_name} goal'
                 return f'{team_name} save'
             return f'{team_name} off target'
         return f'{team_name} ball lost'
+    def match_possession(self):
+        total_possession=self.home_pass+self.away_pass
+        home_possession=(self.home_pass//total_possession)*100
+        away_possession=(self.away_pass//total_possession)*100
+        return home_possession,away_possession
