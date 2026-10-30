@@ -1087,7 +1087,7 @@ def start_match():
     Match_Starting_Separator_Frame.place_forget()
     if match.pause==True:
         match.pause=False
-        match.minute=46
+        match.minute=45
     update_match()
 
 def pause_match():
@@ -1134,8 +1134,9 @@ def update_match():
     Match_After=Match_Frame.after(1000,update_match)
 
 def end_game():
-    global Training_Day
+    global Training_Day,Currect_Day
     Training_Day=True
+    Currect_Day+=1
     main_menu()
 
 def simulate_match():
@@ -1478,8 +1479,6 @@ Back_Match_to_Menu_Btn=tk.Button(Match_Frame,text='Back',bg=HEADER_MENU_BG,fg=ME
 Back_Match_to_Menu_Btn.place(x=200,y=760)
 Simulate_Match_Btn=tk.Button(Match_Frame,text='Simulate Match',bg=HEADER_MENU_BG,fg=MENU_ITEM_FG,font=TEXT_FONT,command=simulate_match)
 Simulate_Match_Btn.place(x=950,y=760)
-Continue_Match_to_Menu_Btn=tk.Button(Match_Frame,text='Continue',font=TEXT_FONT,bg=HEADER_MENU_BG,fg=MENU_ITEM_FG,command=main_menu)
-Continue_Match_to_Menu_Btn.place(x=700,y=760)
 L_Home_Shots=tk.Label(Match_Frame,bg=MENU_BG,fg=MENU_ITEM_FG,font=SUBTITLE_FONT,justify='left')
 L_Home_Shots_on_Target=tk.Label(Match_Frame,bg=MENU_BG,fg=MENU_ITEM_FG,font=SUBTITLE_FONT,justify='left')
 L_Home_Possession=tk.Label(Match_Frame,bg=MENU_BG,fg=MENU_ITEM_FG,font=SUBTITLE_FONT,justify='left')
