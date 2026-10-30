@@ -20,6 +20,7 @@ class Match_Engine:
         self.away_red=0
         self.pause=False
         self.minute=0
+        self.second_half=False
     def add_minute(self):
         self.minute+=1
     def add_home_goal(self):
@@ -276,7 +277,7 @@ class Match_Engine:
             return 'goal'
         return 'save'
     def game_engine(self):
-        if self.minute==45:
+        if self.minute==45 and self.second_half==False:
             self.pause=True
             return 'half time'
         elif self.minute==90:

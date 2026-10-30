@@ -99,7 +99,7 @@ Last_Country_Selected='Spain'
 Confirm_Win_Control=0
 Team='Barcelona'
 League_Table=[]
-Currect_Day=1
+Currect_Day=0
 Match_Index=0
 x2=1200
 x_x_x=100
@@ -1045,9 +1045,18 @@ def play_match():
     L_Away_Yellow_Cart.place_forget()
     L_Home_Red_Cart.place_forget()
     L_Away_Red_Cart.place_forget()
+    Continue_Match_to_Menu.place_forget()
+    Start_Game_Btn.place(x=700,y=760)
+    Tactics_Match_Btn.place(x=450,y=760)
+    Back_Match_to_Menu_Btn.place(x=200,y=760)
+    Simulate_Match_Btn.place(x=950,y=760)
     Match_Frame.place(x=0,y=0,width=1920,height=1080)
     Match_Separator_Frame.place(x=100,y=150,width=1350)
     Match_Starting_Separator_Frame.place(x=730,y=195,height=520)
+    L_Home_Goal.config(text='0')
+    L_Away_Goal.config(text='0')
+    L_Starting_Players_Home.place(x=200,y=250)
+    L_Starting_Players_Away.place(x=950,y=250)
     for i in Game_Calendar[Currect_Day]:
         if Team in i:
             Home_Number=0
@@ -1080,6 +1089,7 @@ def start_match():
     Start_Game_Btn.place_forget()
     Tactics_Match_Btn.place_forget()
     Back_Match_to_Menu_Btn.place_forget()
+    Simulate_Match_Btn.place_forget()
     Pause_Match_Btn.place_forget()
     Continue_Match_Btn.place_forget()
     L_Starting_Players_Home.place_forget()
@@ -1088,6 +1098,7 @@ def start_match():
     if match.pause==True:
         match.pause=False
         match.minute=45
+        match.second_half=True
     update_match()
 
 def pause_match():
@@ -1127,8 +1138,11 @@ def update_match():
     elif event=='full time':
         L_Result_Match.config(text='full time')
         Continue_Match_to_Menu.place(x=700,y=760)
+        Pause_Match_Btn.place_forget()
+        Continue_Match_Btn.place_forget()
         return
     else:
+        L_Result_Match.place(x=660,y=400)
         L_Result_Match.config(text=f'{match.minute} {event}')
         Pause_Match_Btn.place(x=700,y=760)
     Match_After=Match_Frame.after(1000,update_match)
@@ -1137,6 +1151,7 @@ def end_game():
     global Training_Day,Currect_Day
     Training_Day=True
     Currect_Day+=1
+    L_Result_Match.place_forget()
     main_menu()
 
 def simulate_match():
