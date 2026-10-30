@@ -285,8 +285,10 @@ class Match_Engine:
         self.add_minute()
         team=self.attack_team()
         if team=='home':
+            self.add_home_pass()
             team_name=self.name_home
         else:
+            self.add_away_pass()
             team_name=self.name_away
         if self.shot_chance(team)=='shot':
             if team=='home':
@@ -311,6 +313,7 @@ class Match_Engine:
         return f'{team_name} ball lost'
     def match_possession(self):
         total_possession=self.home_pass+self.away_pass
-        home_possession=(self.home_pass//total_possession)*100
-        away_possession=(self.away_pass//total_possession)*100
-        return home_possession,away_possession
+        if total_possession==0:
+            return 50,50
+        home_possession=round(self.home_pass*100/total_possession)
+        return home_possession,100-home_possession
